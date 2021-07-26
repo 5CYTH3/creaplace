@@ -1,3 +1,4 @@
+import 'package:creaplace/views/auth_screen.dart';
 import 'package:creaplace/views/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: AuthScreen(),
     );
   }
 }
