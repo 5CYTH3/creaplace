@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "60031117446",
+    "project_id": "creaplace-ee18a",
+    "storage_bucket": "creaplace-ee18a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60031117446:android:3b3d4e2bd5b453bbd50907",
+        "android_client_info": {
+          "package_name": "com.scythe.creaplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60031117446-l3tinrsbraoj4mqm9tcicj1p3ebdg7mf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSe8ag2ZhZAzMh0Qp1Y8QJGpsbD0jcWFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60031117446-l3tinrsbraoj4mqm9tcicj1p3ebdg7mf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

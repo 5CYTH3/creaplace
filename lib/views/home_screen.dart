@@ -1,3 +1,4 @@
+import 'package:creaplace/controllers/auth_service.dart';
 import 'package:creaplace/views/components/app_bar.dart';
 import 'package:creaplace/views/components/drawer.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomeScreenBody extends StatelessWidget {
-  const HomeScreenBody({ Key? key }) : super(key: key);
+  HomeScreenBody({ Key? key }) : super(key: key);
+
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Center(
+        child: MaterialButton(
+          child: Text("LOG OUT"),
+          onPressed: () async {
+            await _auth.signOut(); 
+          }
+        ),
+      ),
     );
   }
 }

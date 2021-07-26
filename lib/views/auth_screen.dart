@@ -1,3 +1,4 @@
+import 'package:creaplace/controllers/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,12 +24,17 @@ class AuthScreenBody extends StatefulWidget {
 class _AuthScreenBodyState extends State<AuthScreenBody> {
   
   bool showSignIn = false;
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final AuthService _auth = AuthService();
 
   void toggleAuthMode() {
     setState(() {
       showSignIn = !showSignIn;
     });
   }
+
+
   
   @override
   Widget build(BuildContext context) {
@@ -64,6 +70,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                 ),
                 SizedBox(height: 60),
                 TextFormField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email Address",
                     icon: Icon(Icons.mail_outline_rounded)
@@ -71,6 +78,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                   ),
                 ),
                 TextFormField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     labelText: "Password",
                     icon: Icon(Icons.lock_open_rounded)
@@ -78,14 +86,13 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                 ),
                 SizedBox(height: 40.0,),
                 MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
 
-                    if(showSignIn == true) {
+                    var email = emailController.value.text;
+                    var password = passwordController.value.text;
 
-                    } else {
+                    dynamic result = showSignIn ? await _auth.signInEmailPassword(email, password) : await _auth.registerEmailPassword(email, password);
 
-                    }
-                    
                   },
                   child: showSignIn ? Text("SIGNIN") : Text("SIGN UP"),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)), side: BorderSide(color: Colors.black)),
