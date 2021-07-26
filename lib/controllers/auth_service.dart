@@ -15,6 +15,7 @@ class AuthService {
   Stream<AppUser?> get user {
     return _auth.authStateChanges().map(_appUser);
   }
+  
   Future signInEmailPassword(String email, String password) async {
     try {
       UserCredential resultUserCred = await _auth.signInWithEmailAndPassword(email: email, password: password);
