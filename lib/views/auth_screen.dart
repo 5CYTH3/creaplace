@@ -1,4 +1,5 @@
 import 'package:creaplace/controllers/auth_service.dart';
+import 'package:creaplace/controllers/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,6 +31,8 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
   bool showSignIn = false;
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
   final AuthService _auth = AuthService();
 
   void toggleAuthMode() {
@@ -73,6 +76,15 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                   ),
                 ),
                 SizedBox(height: 60),
+                showSignIn ? Container() :
+                TextFormField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: "Username",
+                    icon: Icon(Icons.account_box)
+                    
+                  ),
+                ),
                 TextFormField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -95,7 +107,10 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                     var email = emailController.value.text;
                     var password = passwordController.value.text;
 
-                    dynamic result = showSignIn ? await _auth.signInEmailPassword(email, password) : await _auth.registerEmailPassword(email, password);
+                    dynamic result = showSignIn ? 
+                      await _auth.signInEmailPassword(email, password) : 
+                      await _auth.registerEmailPassword(email, password);
+                      await DatabaseService().saveUser(nameController.value.text);
 
                   },
                   child: showSignIn ? Text("SIGNIN") : Text("SIGN UP"),

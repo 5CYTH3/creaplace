@@ -52,4 +52,8 @@ class AuthService {
 
   }
 
+  String getUserUid() {
+    return _auth.currentUser!.uid;
+  }
+
 }

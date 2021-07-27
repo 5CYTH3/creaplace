@@ -11,24 +11,10 @@ class DatabaseService {
 
   final CollectionReference userCollection = FirebaseFirestore.instance.collection("user");
 
-  Future<void> saveUser(String name, File imageFile) async {
+  Future<void> saveUser(String name) async {
     return await userCollection.doc(uid).set({
       'name': name,
-      'imageFile': imageFile
     });
-  }
-
-  AppUserData _userFromSnapshot(DocumentSnapshot snapshot) {
-    return AppUserData(
-      uid: uid,
-      name: snapshot.data()["name"],
-    );
-  }
-  
-  
-  Stream<AppUserData> get user {
-    return userCollection.doc(uid).snapshots().map(_userFromSnapshot);
-      
   }
     
 }
