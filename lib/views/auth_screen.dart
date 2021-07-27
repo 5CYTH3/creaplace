@@ -2,6 +2,10 @@ import 'package:creaplace/controllers/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
+// TODO: Change lang of the auth_screen from french to english.
+// TODO: Add validators
+// TODO: Implement image upload
 class AuthScreen extends StatelessWidget {
   const AuthScreen({ Key? key }) : super(key: key);
 
@@ -54,7 +58,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    showSignIn ? "Connectez vous" : "Inscrivez vous", 
+                    showSignIn ? "Sign In" : "Sign Up", 
                     style: GoogleFonts.roboto(
                       color: Colors.black, 
                       fontSize: 30
@@ -62,7 +66,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                   ),
                 ),
                 Text(
-                  showSignIn ? "Pour accéder au monde fabuleux de la création !" : "Pour recevoir toutes les informations de Creative Place" ,
+                  showSignIn ? "To access the amazing world of creation !" : "To receive all the informations about Creative Place" ,
                   style: GoogleFonts.roboto(
                     fontSize: 18,
                     color: Colors.black54
@@ -103,7 +107,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                 TextButton(
                   onPressed: () => toggleAuthMode(),
                   child: Text(
-                    showSignIn ? "Pas de compte? Inscrivez vous !" : "Déjà un compte? Connectez vous !", 
+                    showSignIn ? "Not registered ? Sign Up !" : "Already have an account? Sign In !", 
                     style: GoogleFonts.roboto(
                       color: Colors.black, 
                       fontSize: 12

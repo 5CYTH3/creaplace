@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ListItem extends StatelessWidget {
 
-  IconData? leading;
-  String? title;
-  String? subtitle;
+  final IconData? leading;
+  final String? title;
+  final String? subtitle;
 
   ListItem({ Key? key, this.leading, this.title, this.subtitle }) : super(key: key);
 

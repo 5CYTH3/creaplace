@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:creaplace/controllers/auth_service.dart';
 import 'package:creaplace/views/components/app_bar.dart';
 import 'package:creaplace/views/components/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({ Key? key }) : super(key: key);
@@ -26,6 +29,19 @@ class ProfileScreenBody extends StatefulWidget {
 class _ProfileScreenBodyState extends State<ProfileScreenBody> {
  
   final AuthService _auth = AuthService();
+  final picker = ImagePicker();
+  File? _image;
+
+  Future getImage() async {
+    try {
+      var _pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _image = File(_pickedImage!.path);
+      });
+    } catch(e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +69,18 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: Colors.black12,
-                      radius: 70,
+                    GestureDetector(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: _image == null ? CircleAvatar(
+                        backgroundColor: Colors.black12,
+                        radius: 70,
+                      ) :
+                      CircleAvatar(
+                        backgroundImage: FileImage(_image!),
+                        radius: 70,
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 20.0),

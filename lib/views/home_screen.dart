@@ -1,4 +1,3 @@
-import 'package:creaplace/controllers/auth_service.dart';
 import 'package:creaplace/views/components/app_bar.dart';
 import 'package:creaplace/views/components/drawer.dart';
 import 'package:creaplace/views/rooms_screen.dart';

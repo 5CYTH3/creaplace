@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
         child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Creative Place',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
