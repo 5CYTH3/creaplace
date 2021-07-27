@@ -46,4 +46,10 @@ class AuthService {
   
   }
 
+  String getUserEmail() {
+
+    return _auth.currentUser!.email.toString();
+
+  }
+
 }
