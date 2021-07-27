@@ -1,5 +1,6 @@
 import 'package:creaplace/controllers/auth_service.dart';
 import 'package:creaplace/views/components/app_bar.dart';
+import 'package:creaplace/views/components/list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,7 +30,9 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
@@ -44,9 +47,11 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
           Padding(
             padding: EdgeInsets.all(30.0),
             child: Column(
+              
               children: [
                 SizedBox(),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.black12,
@@ -71,9 +76,29 @@ class _ProfileScreenBodyState extends State<ProfileScreenBody> {
                       ),
                     )
                   ],
+                ),
+                SizedBox(height: 60.0),
+                SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: ListView(
+                    shrinkWrap: true,
+                    children: [
+                      ListItem(
+                        leading: Icons.adb,
+                        title: "Android power !",
+                        subtitle: "proud user of android :)",
+                      ),
+                      ListItem(
+                        leading: Icons.favorite_border_outlined,
+                        title: "Lazy Liker",
+                        subtitle: "You liked 10+ posts",
+                      ),
+                    ],
+                  ),
                 )
+
               ],
-            ), 
+            ),
           )
         ],
       ),
