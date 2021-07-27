@@ -57,18 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
 class HomeScreenBody extends StatelessWidget {
   HomeScreenBody({ Key? key }) : super(key: key);
 
-  final AuthService _auth = AuthService();
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: MaterialButton(
-          child: Text("LOG OUT"),
-          onPressed: () async {
-            await _auth.signOut(); 
-          }
-        ),
+        
       ),
     );
   }
