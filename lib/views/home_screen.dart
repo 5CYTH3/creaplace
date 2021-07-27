@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: createAppBar(),
+      appBar: CreateAppBar(),
       drawer: createDrawer(),
       bottomNavigationBar: BottomNavigationBar(
         items: [
