@@ -12,9 +12,16 @@ class DatabaseService {
   final CollectionReference userCollection = FirebaseFirestore.instance.collection("user");
 
   Future<void> saveUser(String name) async {
-    return await userCollection.doc(uid).set({
+    userCollection.add({
       'name': name,
+      'uid': uid
     });
+
+    return;
   }
     
+  /* doc(uid).set({
+      'name': name,
+    });
+  */
 }

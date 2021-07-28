@@ -27,13 +27,10 @@ class AuthService {
   }
 
   Future registerEmailPassword(String email, String password) async {
-    try {
       UserCredential resultUserCred = _auth.createUserWithEmailAndPassword(email: email, password: password) as UserCredential;
       User? user = resultUserCred.user;
       return _appUser(user);
-    } catch (e) {
-      print(e.toString);
-    }
+
 
   }
 

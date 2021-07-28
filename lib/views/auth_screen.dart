@@ -1,6 +1,9 @@
 import 'package:creaplace/controllers/auth_service.dart';
 import 'package:creaplace/controllers/database_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -41,7 +44,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
     });
   }
 
-
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   
   @override
   Widget build(BuildContext context) {
@@ -53,6 +56,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Form(
+            key: _formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,6 +90,9 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                   ),
                 ),
                 TextFormField(
+                  validator: MultiValidator([
+                    EmailValidator(errorText: "Not a valid email."),
+                  ]),
                   controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email Address",
@@ -94,6 +101,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                   ),
                 ),
                 TextFormField(
+                  validator: MinLengthValidator(6, errorText: "Password must be 6+ char long."),
                   controller: passwordController,
                   decoration: InputDecoration(
                     labelText: "Password",
@@ -103,14 +111,32 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
                 SizedBox(height: 40.0,),
                 MaterialButton(
                   onPressed: () async {
+                        if(_formKey.currentState!.validate()) {
+                          
+                        }
 
                     var email = emailController.value.text;
                     var password = passwordController.value.text;
+                                        
+                    if(showSignIn == true) {
+                      await _auth.signInEmailPassword(email, password);
 
-                    dynamic result = showSignIn ? 
-                      await _auth.signInEmailPassword(email, password) : 
-                      await _auth.registerEmailPassword(email, password);
-                      await DatabaseService().saveUser(nameController.value.text);
+                    } else {
+                      try {
+                        await _auth.registerEmailPassword(email, password);
+                        await DatabaseService().saveUser(nameController.value.text);
+                      } on FirebaseAuthException catch(e) {
+                        print("YES, RIGHT ERROR");
+
+                        if(e.code == 'email-already-in-use') {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email already in use !")));
+                          print("YES, RIGHT ERROR");
+                        }
+                        
+                      } catch (e) {
+                        print(e);
+                      }
+                    }
 
                   },
                   child: showSignIn ? Text("SIGNIN") : Text("SIGN UP"),
