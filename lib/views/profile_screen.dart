@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:creaplace/controllers/auth_service.dart';
-import 'package:creaplace/controllers/database_service.dart';
 import 'package:creaplace/views/components/app_bar.dart';
 import 'package:creaplace/views/components/list_item.dart';
 import 'package:flutter/material.dart';
